@@ -1,0 +1,4 @@
+DocuBuds 1.2.2
+
+Release build and release lint passed. UI checked on API 35 emulator for white highlighted search, vertically centred space menus, content-sized note cards capped at 150dp, and a non-sticky Settings donation line.
+No vault format or authentication changes. Prior security and physical-device testing limits remain.

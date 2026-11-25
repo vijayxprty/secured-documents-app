@@ -4,7 +4,7 @@ android {
  namespace 'com.docubuds.app'
  compileSdk 36
  buildToolsVersion '35.0.0'
- defaultConfig { applicationId 'com.docubuds.app'; minSdk 30; targetSdk 36; versionCode 5; versionName '1.2.1' }
+ defaultConfig { applicationId 'com.docubuds.app'; minSdk 30; targetSdk 36; versionCode 6; versionName '1.2.2' }
  compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
  signingConfigs { if (releaseSigningAvailable) { release { storeFile rootProject.file('signing/docubuds-release.p12'); storePassword System.getenv('DOCUBUDS_SIGNING_PASSWORD'); keyAlias 'docubuds'; keyPassword System.getenv('DOCUBUDS_SIGNING_PASSWORD') } } }
  buildTypes { release { if (releaseSigningAvailable) { signingConfig signingConfigs.release }; minifyEnabled true; shrinkResources true; proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),'proguard-rules.pro' } }

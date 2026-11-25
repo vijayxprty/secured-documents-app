@@ -404,7 +404,10 @@ public final class MainActivity extends Activity {
     search.setCompoundDrawables(searchIcon, null, null, null);
     search.setGravity(Gravity.CENTER_VERTICAL);
     search.setPadding(dp(18), 0, dp(12), 0);
-    search.setBackground(border(bg, 16));
+    GradientDrawable searchBackground = shape(settingsDark ? card : Color.WHITE, 16);
+    searchBackground.setStroke(dp(1), accent);
+    search.setBackground(searchBackground);
+    search.setElevation(dp(2));
     search.setMinHeight(dp(56));
     search.setContentDescription("Search your vault");
     search.setOnClickListener(v -> openSearch());
@@ -3350,12 +3353,12 @@ public final class MainActivity extends Activity {
         body,
         item(
             "About DocuBuds",
-            "Version 1.2.1 · Free and ad-free",
+            "Version 1.2.2 · Free and ad-free",
             "id",
             accent,
             () ->
                 info(
-                    "DocuBuds 1.2.1",
+                    "DocuBuds 1.2.2",
                     "Your personal document vault. Completely free. No ads, no accounts, no"
                         + " subscriptions, no cloud backups.\n\n"
                         + "Made with love ♥ by Vijay Mamta Sahani (@momentswithvms)\n\n"
@@ -3637,7 +3640,7 @@ public final class MainActivity extends Activity {
     donation.setBackgroundColor(card);
     donation.setContentDescription("Donate to developer");
     donation.setOnClickListener(v -> donate());
-    root.addView(donation, root.getChildCount() - 1, new LinearLayout.LayoutParams(-1, dp(48)));
+    body.addView(donation, new LinearLayout.LayoutParams(-1, dp(48)));
   }
 
   private void donate() {
@@ -3862,14 +3865,18 @@ public final class MainActivity extends Activity {
     badge.addView(
         new Icons(this, iconFor(title), badgeInk(spaceTone(title))),
         new FrameLayout.LayoutParams(dp(27), dp(27), Gravity.CENTER));
-    FrameLayout.LayoutParams bp = new FrameLayout.LayoutParams(dp(54), dp(54), Gravity.CENTER);
+    FrameLayout.LayoutParams bp =
+        new FrameLayout.LayoutParams(dp(54), dp(54), Gravity.START | Gravity.CENTER_VERTICAL);
     top.addView(badge, bp);
     View more = iconButton("more", "Options for " + title, () -> spaceMenu(id));
     more.setBackgroundColor(Color.TRANSPARENT);
     FrameLayout.LayoutParams mp =
-        new FrameLayout.LayoutParams(dp(38), dp(48), Gravity.END | Gravity.TOP);
+        new FrameLayout.LayoutParams(dp(38), dp(48), Gravity.END | Gravity.CENTER_VERTICAL);
+    mp.setMarginStart(dp(4));
     top.addView(more, mp);
-    tile.addView(top, new LinearLayout.LayoutParams(-1, dp(58)));
+    LinearLayout.LayoutParams topParams = new LinearLayout.LayoutParams(dp(96), dp(58));
+    topParams.gravity = Gravity.CENTER_HORIZONTAL;
+    tile.addView(top, topParams);
     gap(tile, 8);
     TextView label = text(title, compact ? 13 : 15, ink, true);
     label.setGravity(Gravity.CENTER);
@@ -4051,9 +4058,21 @@ public final class MainActivity extends Activity {
         add(body, pair);
         gap(body, 12);
       }
-      LinearLayout tile = col();
-      tile.setMinimumHeight(dp(186));
-      tile.setPadding(dp(16), dp(16), dp(16), dp(16));
+      LinearLayout tile =
+          new LinearLayout(this) {
+            @Override
+            protected void onMeasure(int widthSpec, int heightSpec) {
+              super.onMeasure(widthSpec, heightSpec);
+              int excess = getMeasuredHeight() - dp(150);
+              if (excess > 0 && getChildCount() > 2 && getChildAt(2) instanceof TextView) {
+                TextView snippet = (TextView) getChildAt(2);
+                snippet.setMaxHeight(Math.max(0, snippet.getMeasuredHeight() - excess));
+                super.onMeasure(widthSpec, heightSpec);
+              }
+            }
+          };
+      tile.setOrientation(LinearLayout.VERTICAL);
+      tile.setPadding(dp(14), dp(12), dp(14), dp(12));
       tile.setBackground(shape(noteColour(note.optInt("noteColor")), 20));
       TextView title = text(note.optString("title", "Untitled note"), 18, ink, true);
       title.setMaxLines(2);

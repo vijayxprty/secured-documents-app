@@ -4,7 +4,7 @@ Personal Android document and notes vault. Stores encrypted data on each user's 
 
 ## Current release
 
-**1.2.1** · Android 11+ · Native Java Android app.
+**1.2.2** · Android 11+ · Native Java Android app.
 
 The interface uses a restrained purple palette, grouped quick actions, sticky search and a detached white navigation pill. The lock screen is centred with a smaller folder illustration. Purple, blue, teal and muted amber appear in icon badges while the main interface stays restrained.
 
@@ -21,7 +21,7 @@ The interface uses a restrained purple palette, grouped quick actions, sticky se
 
 ## Security and loss of access
 
-**Not independently security-audited.** Implementation details and verification limits are in [the security design](docs/SECURITY_DESIGN.txt) and [release checks](docs/VERIFICATION_1.2.1.txt).
+**Not independently security-audited.** Implementation details and verification limits are in [the security design](docs/SECURITY_DESIGN.txt) and [release checks](docs/VERIFICATION_1.2.2.txt).
 
 Each installation creates its own keys. Sharing an APK does not share a user's vault. Phone unlock remains an authorised alternative even when an app PIN/pattern is enabled. Screenshots and exported/shared copies leave encrypted-storage protection.
 
