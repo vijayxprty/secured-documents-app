@@ -4,7 +4,7 @@ Personal Android document and notes vault. Stores encrypted data on each user's 
 
 ## Current release
 
-**1.2.2** · Android 11+ · Native Java Android app.
+**1.2.3** · Android 11+ · Native Java Android app.
 
 The interface uses a restrained purple palette, grouped quick actions, sticky search and a detached white navigation pill. The lock screen is centred with a smaller folder illustration. Purple, blue, teal and muted amber appear in icon badges while the main interface stays restrained.
 

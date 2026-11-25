@@ -3353,12 +3353,12 @@ public final class MainActivity extends Activity {
         body,
         item(
             "About DocuBuds",
-            "Version 1.2.2 · Free and ad-free",
+            "Version 1.2.3 · Free and ad-free",
             "id",
             accent,
             () ->
                 info(
-                    "DocuBuds 1.2.2",
+                    "DocuBuds 1.2.3",
                     "Your personal document vault. Completely free. No ads, no accounts, no"
                         + " subscriptions, no cloud backups.\n\n"
                         + "Made with love ♥ by Vijay Mamta Sahani (@momentswithvms)\n\n"
@@ -3872,9 +3872,11 @@ public final class MainActivity extends Activity {
     more.setBackgroundColor(Color.TRANSPARENT);
     FrameLayout.LayoutParams mp =
         new FrameLayout.LayoutParams(dp(38), dp(48), Gravity.END | Gravity.CENTER_VERTICAL);
-    mp.setMarginStart(dp(4));
+    // The dots occupy only ~2dp inside their wider touch target.
+    // Keep their visible edge ~2dp from the 54dp circle.
+    mp.setMarginStart(0);
     top.addView(more, mp);
-    LinearLayout.LayoutParams topParams = new LinearLayout.LayoutParams(dp(96), dp(58));
+    LinearLayout.LayoutParams topParams = new LinearLayout.LayoutParams(dp(76), dp(58));
     topParams.gravity = Gravity.CENTER_HORIZONTAL;
     tile.addView(top, topParams);
     gap(tile, 8);
