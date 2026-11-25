@@ -27,7 +27,7 @@ Each installation creates its own keys. Sharing an APK does not share a user's v
 
 There is **no backup, recovery key or developer reset**. Losing the phone/device keys, uninstalling or clearing app data can permanently lose the vault. Install updates over the existing app rather than uninstalling it.
 
-No signing keys, passwords, local SDK configuration, vault records or test-device data belong in this repository. The release-signing certificate fingerprint is public; the private key must remain outside GitHub.
+The repository is public. No signing keys, passwords, local SDK configuration, vault records or test-device data belong in this repository. The release-signing certificate fingerprint is public; the private key must remain outside GitHub.
 
 ## Build
 
@@ -49,8 +49,12 @@ Without that private material, a release build is unsigned. Do not distribute an
 
 ## Installation
 
-Download the signed APK from this private repository's Releases, then install it on the intended phone. Grant Camera or Notifications only when using those features. Keep Android's installation protections enabled.
+Download the signed APK from this repository's Releases, then install it on the intended phone. Grant Camera or Notifications only when using those features. Keep Android's installation protections enabled.
 
 ## Creator
 
 Made with love ♥ by Vijay Mamta Sahani (@momentswithvms).
+
+## Landing page
+
+The responsive landing page source is in `website/`. It includes real emulator screenshots, feature explanations, installation instructions and optional developer support. Serve it with any static web server.

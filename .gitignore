@@ -13,7 +13,7 @@ signing/
 password.txt
 .env
 .env.*
-# Deliver APKs as private release assets, not Git history
+# Deliver APKs as release assets, not Git history
 *.apk
 *.aab
 *.log
