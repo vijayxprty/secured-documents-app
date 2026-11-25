@@ -1,0 +1,4 @@
+-keep class com.docubuds.app.MainActivity { *; }
+-keep class com.docubuds.app.ShareProvider { *; }
+-keep class com.docubuds.app.ReminderReceiver { *; }
+-keep class com.docubuds.app.VaultApp { *; }

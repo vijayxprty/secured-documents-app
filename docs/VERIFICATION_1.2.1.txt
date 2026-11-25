@@ -1,0 +1,7 @@
+DocuBuds 1.2.1 release checks
+
+Signed release build and Android release lint passed.
+UI checked on Android API 35 emulator: purple detached navigation, sticky search with divider and smaller centred lock illustration.
+This update changes presentation only; vault formats and authentication remain unchanged.
+Prior release functional checks covered local notes, authentication and encrypted persistence.
+No independent security audit or physical-phone/OEM matrix has been completed.

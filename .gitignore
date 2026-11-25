@@ -1,0 +1,19 @@
+# Local tools and generated output
+.gradle/
+**/build/
+local.properties
+.idea/
+*.iml
+.DS_Store
+# Private signing credentials: never commit
+signing/
+*.p12
+*.jks
+*.keystore
+password.txt
+.env
+.env.*
+# Deliver APKs as private release assets, not Git history
+*.apk
+*.aab
+*.log

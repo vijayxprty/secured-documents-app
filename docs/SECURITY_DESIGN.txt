@@ -1,0 +1,27 @@
+DOCUBUDS 1.2.0 SECURITY DESIGN
+
+Independent random 256-bit data key per installation/vault. Android Keystore AES-256-GCM key wraps it and requires strong biometric or device credential authentication. The platform authentication window is 60 seconds; the unlocked app keeps the data key in memory until its one-minute inactivity lock or process exit.
+
+Optional app PIN/pattern unlock adds a second encrypted key wrapper without rewriting document files. CredentialSeal derives a 256-bit AES key using PBKDF2-HMAC-SHA256, 600,000 iterations and a fresh 32-byte random salt. It encrypts the vault data key with AES-GCM; a separate non-exportable, non-auth-required Android Keystore key encrypts that envelope again, keeping the alternate credential device-bound. PINs require 6–12 digits; patterns require 6–9 distinct dots. No plaintext PIN, pattern, reusable password hash or universal developer key is stored. Changing an app credential creates a new salted wrapper. Phone unlock remains an authorised alternate route.
+
+The custom credential retry counter/delay is application-level and kept in private preferences. Five failures cause a 30-second delay, increasing to a maximum of one hour. Counter enforcement is not equivalent to Android hardware-backed lockout and can be bypassed by a sufficiently compromised app/OS. A compromised OS or app process may invoke a non-auth-required Keystore key; PBKDF2 adds guessing cost but does not make low-entropy credentials unguessable. The phone-authenticated wrapper remains subject to Android's authentication policy.
+
+Metadata and attachments use AES-256-GCM with fresh random nonces and context-specific authenticated data. Metadata includes space names, titles, field values, notes, OCR, tags and history. Attachment disk names are random UUIDs. No vault key or user content is embedded in the APK. The app-signing key is unrelated to vault encryption.
+
+Files live in application-private no-backup storage. The manifest disables Android backup and explicitly excludes all data domains from cloud backup and device transfer. Atomic metadata writes protect against interrupted replacement. Missing or damaged existing metadata fails closed rather than starting a replacement vault.
+
+Image capture, viewing, PDF rendering, OCR and sharing use memory without plaintext document staging files. Incoming original files outside the app remain outside the app; DocuBuds imports encrypted copies and does not claim to erase their source. Export is an explicit plaintext-copy operation.
+
+The installed app has no INTERNET, ACCESS_NETWORK_STATE or ACCESS_WIFI_STATE permission. OCR assets are bundled. Camera and notifications are optional runtime permissions; biometrics and boot completion support authentication and reminder rescheduling. Outgoing Android share, UPI and Instagram intents are deliberate external handoffs.
+
+Only the nonsensitive app-unlock method enum, retry counters/delay timestamps, and random reminder identifiers and schedule timestamps are kept outside encrypted metadata to reschedule generic alerts after reboot. They disclose that an alert exists and when, but not its title, document type or fields.
+
+Screenshots are explicitly allowed by user request, including app-owned viewers, notes and camera. The Android-owned phone credential prompt is outside app control. Recent-task screenshots are disabled through the platform API on Android 13+; older Android versions may retain task previews. These choices mean screenshots and authorised viewers can expose readable material outside the encrypted storage boundary. The app does not promise screenshot prevention.
+
+Plaintext necessarily exists in memory while in use. Java and framework copies cannot be guaranteed erased. Root/OS compromise, hostile keyboards, compromised device authentication, accessibility misuse, unlocked sessions, user exports, screenshots and receiving apps remain outside the confidentiality guarantee. There is no independent cryptographic or mobile penetration-test certification.
+
+No recovery key, password reset, backup, cloud component or developer master key exists. Removing device credentials or invalidating the Keystore key may make data irrecoverable. Deliberate permanent deletion removes encrypted records/files, but flash-storage physical erasure is not guaranteed; destroying the vault also deletes its Keystore wrapping key.
+
+Notes: titles, plain-text body, generated rich-text markup, colour, checklist state and edit history are encrypted in metadata. Autosave uses atomic encrypted writes. App-owned credential fields are cleared on dismissal; managed-memory copies cannot be guaranteed erased. A cancelled custom unlock does not deliberately expose the vault UI.
+
+References: Android Keystore documentation (developer.android.com/privacy-and-security/keystore) and OWASP Password Storage Cheat Sheet (cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html). This implementation has not received an independent security audit.

@@ -1,0 +1,58 @@
+DOCUBUDS 1.2.0
+Android personal document vault
+
+INSTALL
+Open DocuBuds-1.2.0.apk on an Android 11 or newer phone. If Android asks, allow installation from the app you used to open the APK. A secure phone PIN, pattern or password is required. Create the vault and acknowledge the no-recovery notice. Strong fingerprint or face authentication is available only when the phone supports Android's strong biometric classification.
+
+The app is free and ad-free. There is no account, application internet access, cloud storage, backup, recovery key, subscription or developer reset. Your vault is not included when you share this APK.
+
+USING THE APP
+
+Welcome and lock screens have a local vector illustration and updated white/navy/cyan styling using Paytm as the main visual reference. No reference media or online assets are needed at runtime.
+Vault: grouped quick actions offer Add files, Scan, New note and New space. A three-column service grid organises root spaces, with two-column nested spaces. Search, create named spaces, add local files, scan pages, and save structured details. A property, company or vehicle space can create helpful subfolders. Use the options button beside a space to rename, move, reorder or delete it when empty. Create your own years/months under a company's Payslips folder.
+
+Navigation: Vault, Notes, Reminders and Settings use an animated bottom dock. Search stays at the bottom of the main screens, separated from navigation by an inset divider. The floating + opens designed action sheets; on a document it offers Import/Scan, and in Notes it creates a note. Space ⋮ menus offer rename, move, reorder and deletion when empty.
+
+Document actions: use ⋮ for Edit, Pin, Share, PDF creation, Move, Archive, History and Trash. All original file actions remain available beside each attachment.
+
+Records: identity documents, bank accounts, payment cards, email/service logins, secure notes, property and vehicle details, health, education, insurance, employment letters, payslips, resumes, tax, warranties, travel, reminders and offline authenticator codes. Custom fields, private notes and tags cover other records. Secrets are masked and can be revealed or copied deliberately. Latest ten edits to record details are retained; attachment versions remain separate files.
+
+Attachments: use the options button or long-press. Open, share the original, save a local copy, rename, recognise text offline, crop/rotate a copy, reorder, or remove. Original files are encrypted without recompression. Supported image, PDF and text previews work inside the app. Other formats can be stored and explicitly exported/shared to another app. Each attachment is limited to 32 MB. Up to 30 files can be imported together; sharing allows four files, up to 48 MB total, at once.
+
+Scan: optional camera permission. Captures stay in memory until encrypted; no photo is added to the gallery. Scan another page to append more. Crop/rotate creates a new PNG; image-to-PDF creates a separate PDF in attachment order. Derived copies may be scaled for processing; originals remain unchanged. English/Latin and Hindi/Devanagari OCR models are bundled. OCR must be reviewed for errors.
+
+Reminders: set a date on a record or create a reminder. Generic local alerts are scheduled seven days before and on the date, around 9 AM. Allow notifications if requested. Android battery, time-zone and notification settings affect timing. Notifications contain no record title or private details. Open the vault to see details.
+
+Settings: vault display name, light/dark appearance, recent records, screenshot access, password generator, local password review, duplicate attachment report, archive, trash and storage. Trash is purged after 30 days when the vault is opened. Permanent deletion and deleting the vault require confirmation. Deletion cannot remove copies you exported elsewhere.
+
+NOTES
+Use the Notes tab or + → Write a note. Each note has its own title and body. Type directly in the app; uploading a file is not required. Notes save automatically after a short pause and when the editor closes. Select text to apply bold or italic; insert checklist items with the checklist tool. Checklist ticks can be changed in the reader. Choose a subtle note colour, pin notes, search them, move, archive, share or restore recent edits. Rich text and checklist state are encrypted in vault metadata. This is a native notes editor, not a claim of full Samsung Notes feature parity.
+
+APP PIN AND PATTERN
+Settings → Unlock method offers an optional separate app PIN (6–12 digits) or pattern (at least six unique dots). Configure it twice after phone authentication. It becomes the primary unlock option. Phone unlock remains available on the same device; anyone who can use that authorised phone unlock can still open the vault. Removing or changing app unlock requires phone authentication. There is no portable recovery key or developer reset.
+
+A secure phone screen lock is still required to create the vault initially. Custom app credentials are protected by a salted password-derived key and a separate device-bound Keystore key. The PIN/pattern itself is not stored. Repeated wrong app credentials trigger increasing app-level delays; these are separate from Android's hardware-backed phone-unlock protections. Short PINs/patterns have finite guessing resistance and do not make a compromised phone safe.
+
+LOCKING AND LOSS
+The vault locks after one minute without interaction, including time in other apps. Tap the lock icon for immediate locking. Android authenticates the phone-unlock option; DocuBuds does not read or store your phone PIN, pattern, password or biometric templates. The optional separate app PIN/pattern protects an alternate encrypted copy of the same vault key.
+
+Losing the phone, uninstalling, clearing app data, or invalidating/removing its device encryption key can permanently lose the vault. There is no backup or recovery mechanism. Export files individually before any action that could remove the vault. A local export is a readable copy outside DocuBuds; it is not a restorable encrypted vault backup.
+
+SHARING AND SCREENSHOTS
+Android's share sheet opens the app you select. DocuBuds supplies the original file bytes; receiving apps may compress, retain or transmit copies. Sharing as a document/file usually avoids the receiving app's image compression. Temporary sharing access expires after ten minutes, but already received copies cannot be recalled. Process termination may end a pending share earlier.
+
+Screenshots are allowed in app-owned screens, notes, document previews and camera. Screenshots create readable copies outside the encrypted vault. Android controls its own credential prompt and may block its capture. Task-switcher screenshots are disabled on Android 13+; older Android behaviour varies. App Copy buttons mark sensitive clips and attempt to clear an unchanged clip after 30 seconds. Native text-selection copying follows Android's own clipboard behaviour. Already received copies cannot be recalled.
+
+SUPPORT THE DEVELOPER
+The single-line Donate to developer footer, fixed at the bottom of Settings only, opens a UPI chooser, or show the original QR and copyable UPI ID if no UPI app is installed. No amount is pre-filled and no payment result is claimed. Instagram opens only when you tap the creator credit. These deliberate external apps can use their own internet access.
+Payee: Vijay Kumar
+UPI: jaynishad2010@okhdfcbank
+Made with love ♥ by Vijay Mamta Sahani (@momentswithvms)
+
+VERIFICATION LIMITS
+See VERIFICATION.txt in the release package; source docs retain earlier verification records. A signed release build and passing functional checks do not establish an independent security audit or guarantee resistance to a compromised phone. Physical-device biometric, OEM and large-library testing remain separate from the emulator checks recorded here.
+
+REBUILDING
+The source uses Java 17+, Gradle 8.13, AGP 8.13.2, Android SDK 36 and Build Tools 35.0.0. Android Studio can open this folder. Set sdk.dir in local.properties or ANDROID_HOME. Release signing uses signing/docubuds-release.p12, alias docubuds, with DOCUBUDS_SIGNING_PASSWORD supplied as an environment variable. Signing material is delivered separately and excluded from source.
+Run ./gradlew assembleRelease testReleaseUnitTest lintRelease. Development dependency downloads need internet; the installed application does not.
+Keep the original signing key privately: it is required to distribute compatible updates. Do not uninstall the app merely to install an update, because uninstalling deletes the vault.
