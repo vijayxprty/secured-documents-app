@@ -57,4 +57,6 @@ Made with love ♥ by Vijay Mamta Sahani (@momentswithvms).
 
 ## Landing page
 
+Live website: https://vijayxprty.github.io/secured-documents-app/
+
 The responsive landing page source is in `website/`. It includes real emulator screenshots, feature explanations, installation instructions and optional developer support. Serve it with any static web server.
